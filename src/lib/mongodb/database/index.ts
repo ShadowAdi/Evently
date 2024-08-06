@@ -5,6 +5,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 let cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const ConnectToDatabse = async () => {
+  
   if (cached.conn) {
     return cached.conn;
   }
@@ -16,11 +17,12 @@ export const ConnectToDatabse = async () => {
   cached.promise =
     cached.promise ||
     mongoose.connect(process.env.MONGODB_URI as string, {
-      dbName: "evently",
       bufferCommands: false,
     });
 
     cached.conn=await cached.promise
+
+    console.log(cached)
 
     return cached.conn
 };
