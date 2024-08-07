@@ -22,7 +22,6 @@ export const ConnectToDatabse = async () => {
 
     cached.conn=await cached.promise
 
-    console.log(cached)
 
     return cached.conn
 };
