@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -22,12 +20,12 @@ import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { eventDefaultValues } from "../../../../constants";
-import { useRouter } from "next/router";
 import { useUploadThing } from "@/lib/UploadThing";
 import { createEvent, updateEvent } from "@/lib/mongodb/actions/event.action";
 import { Checkbox } from "../checkbox";
 import { IEvent } from "@/lib/mongodb/database/models/Event.model";
 import { formSchema } from "@/lib/validator";
+import { useRouter } from "next/navigation";
 
 type EventFormProps = {
   userId: string;
