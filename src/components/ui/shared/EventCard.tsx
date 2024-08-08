@@ -16,11 +16,11 @@ type EventCardProps = {
 const EventCard = ({ event, hidePrice, hasOrderLink }: EventCardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
-  const isEventCreated = userId === event.organizer._id.toString();
+  const isEventCreated = userId === event?.organizer?._id.toString();
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link
-        style={{ backgroundImage: `url(${event.imageUrl})` }}
+        style={{ backgroundImage: `url(${event?.imageUrl})` }}
         href={"/events/" + event?._id}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-gray-500 "
       />
@@ -38,31 +38,31 @@ const EventCard = ({ event, hidePrice, hasOrderLink }: EventCardProps) => {
         {!hidePrice && (
           <div className="flex gap-2 ">
             <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-600">
-              {event.isFree ? "FREE" : `$${event.price}`}
+              {event?.isFree ? "FREE" : `$${event?.price}`}
             </span>
             <p className="p-semibold-14  w-min rounded-full bg-gray-500/10 px-4 py-1 text-gray-500  line-clamp-1">
-              {event.category.name}
+              {event?.category.name}
             </p>
           </div>
         )}
         <p className="p-medium-16 p-medium-18 text-gray-500 ">
-          {formatDateTime(event.startDateTime).dateTime}
+          {formatDateTime(event?.startDateTime).dateTime}
         </p>
         <Link href={`/events/${event?._id}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
-            {event.title}
+            {event?.title}
           </p>
         </Link>
 
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-gray-600 ">
-            {event.organizer.firstName} {event.organizer.lastName}
+            {event?.organizer?.firstName} {event?.organizer?.lastName}
           </p>
 
           {hasOrderLink && (
             <Link className="flex gap-2" href={`/orders?eventId=${event?._id}`}>
               <p className="text-primary-500">Order Details</p>
-              <ArrowBigRight width={10} height={10} />
+              <ArrowBigRight width={20} height={20} />
             </Link>
           )}
         </div>

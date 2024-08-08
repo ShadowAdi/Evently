@@ -26,6 +26,7 @@ import { Checkbox } from "../checkbox";
 import { IEvent } from "@/lib/mongodb/database/models/Event.model";
 import { formSchema } from "@/lib/validator";
 import { useRouter } from "next/navigation";
+import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 
 type EventFormProps = {
   userId: string;
@@ -189,12 +190,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Image
-                      src="/assets/icons/location-grey.svg"
-                      alt="calendar"
-                      width={24}
-                      height={24}
-                    />
+                    <LocateIcon width={24} height={24} />
 
                     <Input
                       placeholder="Event location or Online"
@@ -217,13 +213,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Image
-                      src="/assets/icons/calendar.svg"
-                      alt="calendar"
-                      width={24}
-                      height={24}
-                      className="filter-grey"
-                    />
+                    <Calendar width={24} height={24} className="filter-grey" />
                     <p className="ml-3 whitespace-nowrap text-grey-600">
                       Start Date:
                     </p>
@@ -249,13 +239,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Image
-                      src="/assets/icons/calendar.svg"
-                      alt="calendar"
-                      width={24}
-                      height={24}
-                      className="filter-grey"
-                    />
+                    <Calendar width={24} height={24} className="filter-grey" />
                     <p className="ml-3 whitespace-nowrap text-grey-600">
                       End Date:
                     </p>
@@ -283,9 +267,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Image
-                      src="/assets/icons/dollar.svg"
-                      alt="dollar"
+                    <DollarSign
                       width={24}
                       height={24}
                       className="filter-grey"
@@ -334,12 +316,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <Image
-                      src="/assets/icons/link.svg"
-                      alt="link"
-                      width={24}
-                      height={24}
-                    />
+                    <Link width={24} height={24} />
 
                     <Input
                       placeholder="URL"

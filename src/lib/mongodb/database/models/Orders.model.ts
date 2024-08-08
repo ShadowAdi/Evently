@@ -16,6 +16,15 @@ export interface IOrder extends Document {
   };
 }
 
+export type IOrderItem = {
+  _id: string
+  totalAmount: string
+  createdAt: Date
+  eventTitle: string
+  eventId: string
+  buyer: string
+}
+
 const OrderSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
@@ -39,5 +48,5 @@ const OrderSchema = new mongoose.Schema({
   },
 });
 
-const Order = models.Category || model("Order", OrderSchema);
+const Order = models.Order || model("Order", OrderSchema);
 export default Order;

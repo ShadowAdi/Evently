@@ -1,15 +1,22 @@
 import { Button } from "@/components/ui/button";
 import Collection from "@/components/ui/shared/Collection";
+import Search from "@/components/ui/shared/Search";
 import { getAllEvents } from "@/lib/mongodb/actions/event.action";
 import Image from "next/image";
 import Link from "next/link";
+import { SearchParamProps } from "../../../types";
+import CategoryFilter from "@/components/ui/shared/CategoryFilter";
 
-export default async function Home() {
+export default async function Home({ searchParams }: SearchParamProps) {
+  const pageNumber = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
+
   const events = await getAllEvents({
-    query: "",
-    category: "",
-    page: 1,
-    limit: 5,
+    query: searchText,
+    category: category,
+    page: pageNumber,
+    limit: 3,
   });
   return (
     <>
@@ -45,15 +52,16 @@ export default async function Home() {
           Trusted By <br /> Thousands of Events{" "}
         </h2>
         <div className="flex w-full gap-5 md:flex-row flex-col">
-          Search Category
+          <Search />
+          <CategoryFilter/>
         </div>
         <Collection
           data={events?.data}
           emptyTitle="No Events Found"
           collectionType="All_Events"
-          limit={6}
-          page={1}
-          totalPages={2}
+          limit={3}
+          page={pageNumber}
+          totalPages={events?.totalPages}
           emptyStateSubtext="Come back later"
         />
       </section>

@@ -2,7 +2,7 @@ import { IEvent } from "@/lib/mongodb/database/models/Event.model";
 import React, { useEffect } from "react";
 import { Button } from "../button";
 import { loadStripe } from "@stripe/stripe-js";
-import { checkOutOrder } from "@/lib/mongodb/actions/order.action";
+import { checkoutOrder } from "@/lib/mongodb/actions/order.action";
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -20,20 +20,22 @@ const Checkout = ({ userId, event }: { userId: string; event: IEvent }) => {
       );
     }
   }, []);
+
   const onCheckout = async () => {
     const order = {
       eventTitle: event.title,
-      eventId: event?._id,
+      eventId: event._id,
       price: event.price,
       isFree: event.isFree,
       buyerId: userId,
     };
 
-    await checkOutOrder(order)
+    await checkoutOrder(order);
   };
+
   return (
-    <form method="POST" action={onCheckout}>
-      <Button type="submit" role="link" className="button sm:w-fit">
+    <form action={onCheckout} method="post">
+      <Button type="submit" role="link" size="lg" className="button sm:w-fit">
         {event.isFree ? "Get Ticket" : "Buy Ticket"}
       </Button>
     </form>
